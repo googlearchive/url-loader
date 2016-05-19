@@ -20,10 +20,10 @@ suite('PackageUrlResolver', function() {
   suite('canResolve', () => {
 
     test('canResolve is true an in-package URL', () => {
-      let resolver = new PackageUrlResolver();
-      assert.isTrue(resolver.canResolve('foo.html'));
-      assert.isTrue(resolver.canResolve('/foo.html'));
-      assert.isTrue(resolver.canResolve('./foo.html'));
+      let r = new PackageUrlResolver();
+      assert.isTrue(r.canResolve('foo.html'));
+      assert.isTrue(r.canResolve('/foo.html'));
+      assert.isTrue(r.canResolve('./foo.html'));
     });
 
     test('canResolve is true for a sibling URL', () => {
@@ -39,13 +39,13 @@ suite('PackageUrlResolver', function() {
     });
 
     test('canResolve is true for a URL with the right hostname', () => {
-      let resolver = new PackageUrlResolver({
+      let r = new PackageUrlResolver({
         hostname: 'abc.xyz',
       });
-      assert.isTrue(resolver.canResolve('http://abc.xyz/foo.html'));
-      assert.isTrue(resolver.canResolve('http://abc.xyz/./foo.html'));
-      assert.isTrue(resolver.canResolve('http://abc.xyz/../foo.html'));
-      assert.isTrue(resolver.canResolve('http://abc.xyz/foo/../foo.html'));
+      assert.isTrue(r.canResolve('http://abc.xyz/foo.html'));
+      assert.isTrue(r.canResolve('http://abc.xyz/./foo.html'));
+      assert.isTrue(r.canResolve('http://abc.xyz/../foo.html'));
+      assert.isTrue(r.canResolve('http://abc.xyz/foo/../foo.html'));
     });
 
   });
@@ -53,10 +53,10 @@ suite('PackageUrlResolver', function() {
   suite('resolve', () => {
 
     test('resolves an in-package URL', () => {
-      let resolver = new PackageUrlResolver();
-      assert.equal('foo.html', resolver.resolve('foo.html'));
-      assert.equal('foo.html', resolver.resolve('/foo.html'));
-      assert.equal('foo.html', resolver.resolve('./foo.html'));
+      let r = new PackageUrlResolver();
+      assert.equal('foo.html', r.resolve('foo.html'));
+      assert.equal('foo.html', r.resolve('/foo.html'));
+      assert.equal('foo.html', r.resolve('./foo.html'));
     });
 
     test('resolves a sibling URL', () => {
@@ -74,13 +74,25 @@ suite('PackageUrlResolver', function() {
     });
 
     test('resolves a URL with the right hostname', () => {
-      let resolver = new PackageUrlResolver({
+      let r = new PackageUrlResolver({
+        componentDir: 'components',
         hostname: 'abc.xyz',
       });
-      assert.equal('foo.html', resolver.resolve('http://abc.xyz/foo.html'));
-      assert.equal('foo.html', resolver.resolve('http://abc.xyz/./foo.html'));
-      assert.equal('foo.html', resolver.resolve('http://abc.xyz/../foo.html'));
-      assert.equal('foo.html', resolver.resolve('http://abc.xyz/foo/../foo.html'));
+      assert.equal('foo.html', r.resolve('http://abc.xyz/foo.html'));
+      assert.equal('foo.html', r.resolve('http://abc.xyz/./foo.html'));
+      assert.equal('foo.html', r.resolve('http://abc.xyz/../foo.html'));
+      assert.equal('foo.html', r.resolve('http://abc.xyz/foo/../foo.html'));
+
+      assert.equal('foo.html', r.resolve('foo.html'));
+      assert.equal('foo.html', r.resolve('./foo.html'));
+      assert.equal('components/foo/foo.html', r.resolve('../foo/foo.html'));
+      assert.equal('foo.html', r.resolve('foo/../foo.html'));
+
+      assert.equal('foo.html', r.resolve('/foo.html'));
+      assert.equal('foo.html', r.resolve('/./foo.html'));
+      assert.equal('foo/foo.html', r.resolve('/../foo/foo.html'));
+      assert.equal('foo.html', r.resolve('/foo/../foo.html'));
+
     });
 
   });
