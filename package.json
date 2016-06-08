@@ -1,0 +1,29 @@
+{
+  "name": "file-loader",
+  "version": "1.0.0",
+  "description": "A file-loading and URL resolving library",
+  "author": "The Polymer Project Authors",
+  "license": "BSD-3-Clause",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "fs-extra": "^0.30.0",
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-typescript": "^2.13.4",
+    "gulp-typings": "^2.0.0",
+    "run-sequence": "^1.2.0"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Polymer/file-loader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Polymer/file-loader/issues"
+  },
+  "homepage": "https://github.com/Polymer/file-loader#readme"
+}

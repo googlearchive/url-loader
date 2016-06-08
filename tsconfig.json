@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "isolatedModules": false,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "removeComments": false,
+        "preserveConstEnums": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "outDir": "lib"
+    },
+    "filesGlob": [
+        "src/**/*.ts",
+        "typings/index.d.ts",
+        "custom_typings/**.d.ts"
+    ],
+    "atom": {
+        "rewriteTsconfig": true
+    },
+    "files": [
+        "src/fs-url-loader.ts",
+        "src/package-url-resolver.ts",
+        "src/url-loader.ts",
+        "src/url-resolver.ts",
+        "typings/index.d.ts"
+    ]
+}

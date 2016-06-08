@@ -1,2 +1,3 @@
-# FileLoader
-File loading APIs
+# url-loader
+
+URL loading and resolving APIs
